@@ -9,8 +9,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface CrudMealRepository extends CrudRepository<Meal, Integer> {
+public interface MealRepository extends CrudRepository<Meal, Integer> {
 
     @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restId and m.date=:date")
     List<Meal> getMenu(Integer restId, LocalDate date);
+
+    List<Meal> getMeals();
 }

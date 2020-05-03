@@ -1,5 +1,8 @@
 package ru.vote.system.restaurant.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -9,6 +12,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "votes")
+@Setter
+@Getter
+@ToString
 public class Vote extends AbstractIdEntity {
     @Column(name = "placed")
     @NotNull

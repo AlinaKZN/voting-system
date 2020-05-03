@@ -5,6 +5,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="ru.vote.system.restaurant.**.web"/>
+    <context:component-scan base-package="ru.vote.system.restaurant.**.repository"/>
     <mvc:annotation-driven/>
 
 </beans>

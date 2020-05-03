@@ -8,12 +8,12 @@ import ru.vote.system.restaurant.repository.CrudUserRepository;
 import java.util.List;
 
 @Repository
-public class UserRepository {
+public class UserRepositoryImpl {
     private static final Sort SORT_NAME_EMAIL = Sort.by(Sort.Direction.ASC, "name", "email");
 
     private final CrudUserRepository crudRepository;
 
-    public UserRepository(CrudUserRepository crudRepository) {
+    public UserRepositoryImpl(CrudUserRepository crudRepository) {
         this.crudRepository = crudRepository;
     }
 
