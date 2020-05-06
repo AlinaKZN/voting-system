@@ -7,7 +7,6 @@ import ru.vote.system.restaurant.repository.CrudUserRepository;
 import ru.vote.system.restaurant.repository.CrudVoteRepository;
 import ru.vote.system.restaurant.repository.VoteRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -46,14 +45,4 @@ public class VoteRepositoryImpl implements VoteRepository {
         return voteRepository.getAll(userId);
     }
 
-
-    @Override
-    public int getRestaurantVotesCount(Integer restId, LocalDate date) {
-        return voteRepository.getRestaurantVotesCount(restId, date);
-    }
-
-    @Override
-    public Vote getVoteByUserIdAndDate(Integer userId, LocalDate date) {
-        return voteRepository.getVoteByUserIdAndDate(userId, date);
-    }
 }

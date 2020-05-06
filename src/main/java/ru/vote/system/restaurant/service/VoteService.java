@@ -6,7 +6,9 @@ import ru.vote.system.restaurant.model.Vote;
 import ru.vote.system.restaurant.repository.VoteRepository;
 import ru.vote.system.restaurant.util.DateUtil;
 
-import java.time.LocalDate;
+import java.util.List;
+
+import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class VoteService {
@@ -15,6 +17,14 @@ public class VoteService {
 
     public VoteService(VoteRepository repository) {
         this.repository = repository;
+    }
+
+    public Vote get(int id, int userId) {
+        return repository.get(id, userId);
+    }
+
+    public List<Vote> getAll(int userId) {
+        return repository.getAll(userId);
     }
 
     public Vote create(Vote vote, int userId) {
@@ -30,12 +40,8 @@ public class VoteService {
             throw new RuntimeException("Too late to vote, try tomorrow");
         }
     }
-
-    public int getRestaurantVotesCount(int restId, LocalDate date) {
-        return repository.getRestaurantVotesCount(restId, date);
-    }
-
-    public Vote getVoteByUserAndDate(int userId, LocalDate date) {
-        return repository.getVoteByUserIdAndDate(userId, date);
+    
+    public void delete(int id, int userId) {
+        checkNotFoundWithId(repository.delete(id, userId), id);
     }
 }

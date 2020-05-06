@@ -27,13 +27,13 @@ public class MealService {
         repository.deleteById(id);
     }
 
-    public List<Meal> getAll() {
-        return repository.getMeals();
+    public List<Meal> getAll(int id) {
+        return repository.getAll(id);
     }
 
-    public void updateOrCreate(Meal meal) {
+    public Meal save(Meal meal) {
         Assert.notNull(meal, "meal must not be null");
-        repository.save(meal);
+        return repository.save(meal);
     }
 
     public List<Meal> getMenu(int restId, LocalDate date) {

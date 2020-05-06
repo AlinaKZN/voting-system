@@ -6,8 +6,7 @@ import ru.vote.system.restaurant.model.Restaurant;
 import ru.vote.system.restaurant.repository.RestaurantRepository;
 
 import java.util.List;
-
-import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFoundWithId;
+import java.util.Optional;
 
 @Service
 public class RestaurantService {
@@ -18,8 +17,8 @@ public class RestaurantService {
         this.repository = repository;
     }
 
-    public Restaurant get(Integer id) {
-        return checkNotFoundWithId(repository.findById(id), id);
+    public Optional<Restaurant> get(Integer id) {
+        return repository.findById(id);
     }
 
     public void delete(int id) {
@@ -30,9 +29,9 @@ public class RestaurantService {
         return repository.getRestaurants();
     }
 
-    public void update(Restaurant restaurant) {
-        Assert.notNull(restaurant, "meal must not be null");
-        repository.save(restaurant);
+    public Restaurant save(Restaurant restaurant) {
+        Assert.notNull(restaurant, "restaurant must not be null");
+        return repository.save(restaurant);
     }
 
     public Restaurant getWithVotes(int id) {

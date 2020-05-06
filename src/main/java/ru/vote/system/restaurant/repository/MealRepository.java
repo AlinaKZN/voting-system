@@ -11,8 +11,9 @@ import java.util.List;
 @Repository
 public interface MealRepository extends CrudRepository<Meal, Integer> {
 
-    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restId and m.date=:date")
-    List<Meal> getMenu(Integer restId, LocalDate date);
+    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restId AND m.date=:date")
+    List<Meal> getMenu(int restId, LocalDate date);
 
-    List<Meal> getMeals();
+    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restId ORDER BY m.date")
+    List<Meal> getAll(int id);
 }

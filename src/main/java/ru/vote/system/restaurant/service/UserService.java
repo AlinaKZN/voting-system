@@ -20,7 +20,7 @@ import java.util.List;
 import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFound;
 import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
-@Service("userService")
+@Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
 
