@@ -2,8 +2,6 @@ package ru.vote.system.restaurant.service;
 
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -11,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.vote.system.restaurant.AuthorizedUser;
 import ru.vote.system.restaurant.model.User;
-import ru.vote.system.restaurant.repository.impl.UserRepositoryImpl;
+import ru.vote.system.restaurant.repository.UserRepository;
 import ru.vote.system.restaurant.to.UserTo;
 import ru.vote.system.restaurant.util.UserUtil;
 
@@ -21,16 +19,16 @@ import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFound;
 import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
-@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+//@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
 
-    private UserRepositoryImpl repository;
+    UserRepository repository;
 
-    public UserService(UserRepositoryImpl repository) {
+    public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
-    public void setRepository(UserRepositoryImpl repository) {
+    public void setRepository(UserRepository repository) {
         this.repository = repository;
     }
 

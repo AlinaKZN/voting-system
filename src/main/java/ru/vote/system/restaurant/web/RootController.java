@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RootController {
 
-    public static final String V_1 = "/v1";
-
     @GetMapping("/")
     @ResponseBody
     public String welcome() {
-        return "Welcome to RestTemplate Example.";
+        return "Welcome to voting system.";
     }
 }
 

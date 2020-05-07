@@ -7,7 +7,7 @@ import ru.vote.system.restaurant.to.UserTo;
 public class UserUtil {
 
     public static User createNewFromTo(UserTo userTo) {
-        return new User(null, userTo.getName(), userTo.getEmail().toLowerCase(), userTo.getPassword(), Role.USER);
+        return new User(null, userTo.getName(), userTo.getEmail().toLowerCase(), userTo.getPassword(), null, Role.USER);
     }
 
     public static UserTo asTo(User user) {

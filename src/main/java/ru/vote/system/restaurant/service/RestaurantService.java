@@ -1,6 +1,5 @@
 package ru.vote.system.restaurant.service;
 
-import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.vote.system.restaurant.model.Restaurant;
 import ru.vote.system.restaurant.repository.RestaurantRepository;
@@ -8,7 +7,6 @@ import ru.vote.system.restaurant.repository.RestaurantRepository;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class RestaurantService {
 
     RestaurantRepository repository;
@@ -26,7 +24,7 @@ public class RestaurantService {
     }
 
     public List<Restaurant> getAll() {
-        return repository.getRestaurants();
+        return repository.findAll();
     }
 
     public Restaurant save(Restaurant restaurant) {
