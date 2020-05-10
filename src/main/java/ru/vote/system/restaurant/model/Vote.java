@@ -1,6 +1,8 @@
 package ru.vote.system.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @ToString
+@RequiredArgsConstructor
 public class Vote extends AbstractIdEntity {
     @Column(name = "placed")
     @NotNull
@@ -24,6 +27,7 @@ public class Vote extends AbstractIdEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
 //    @NotNull
+    @JsonBackReference
     private Restaurant restaurant;
 
     @ManyToOne(fetch = FetchType.LAZY)

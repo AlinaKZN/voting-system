@@ -2,6 +2,7 @@ package ru.vote.system.restaurant.controller.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ public class RestaurantRestController {
     private static final Logger log = LoggerFactory.getLogger(RestaurantRestController.class);
     static final String REST_URL = "/rest/profile/restaurants";
 
+    @Autowired
     private RestaurantService service;
 
     @GetMapping
@@ -32,13 +34,13 @@ public class RestaurantRestController {
         return service.get(id).isPresent() ? service.get(id).get() : null;
     }
 
-    @GetMapping("/menu/{id}")
+    @GetMapping("/{id}/menu")
     public Restaurant getWithMenu(@PathVariable int id) {
         log.info("get restaurant id= {} with menu", id);
         return service.getWithMenu(id);
     }
 
-    @GetMapping("/votes/{id}")
+    @GetMapping("/{id}/votes")
     public Restaurant getWithVotes(@PathVariable int id) {
         log.info("get restaurant {} with votes", id);
         return service.getWithVotes(id);

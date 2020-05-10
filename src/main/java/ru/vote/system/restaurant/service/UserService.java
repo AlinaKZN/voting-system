@@ -2,6 +2,8 @@ package ru.vote.system.restaurant.service;
 
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,7 @@ import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFound;
 import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
-//@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
 
     UserRepository repository;

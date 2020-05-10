@@ -1,5 +1,7 @@
 package ru.vote.system.restaurant.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.vote.system.restaurant.model.Meal;
 import ru.vote.system.restaurant.repository.MealRepository;
@@ -9,9 +11,10 @@ import java.util.List;
 
 import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
-
+@Service
 public class MealService {
 
+    @Autowired
     MealRepository repository;
 
     public MealService(MealRepository repository) {
@@ -36,6 +39,6 @@ public class MealService {
     }
 
     public List<Meal> getMenu(int restId, LocalDate date) {
-        return null;//repository.getMenu(restId, date);
+        return repository.getMenu(restId, date);
     }
 }

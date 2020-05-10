@@ -4,7 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.vote.system.restaurant.model.Meal;
 import ru.vote.system.restaurant.service.MealService;
 
@@ -20,13 +23,13 @@ public class MealRestController {
     @Autowired
     MealService service;
 
-    @GetMapping
-    public List<Meal> getMenu(@RequestParam int id, @RequestParam LocalDate date) {
-        log.info("menu of the day for restaurant {} and date {}", id, date);
-        return service.getMenu(id, date);
+    @GetMapping(value = "/{id}")
+    public List<Meal> getMenu(@PathVariable int id) {
+        log.info("menu of the day for restaurant {} and date {}", id, LocalDate.now());
+        return service.getMenu(id, LocalDate.now());
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "history/{id}")
     public List<Meal> getMealsHistory(@PathVariable int id) {
         log.info("meals history for restaurant {}", id);
         return service.getAll(id);

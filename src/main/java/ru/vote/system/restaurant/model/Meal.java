@@ -1,11 +1,14 @@
 package ru.vote.system.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
+import ru.vote.system.restaurant.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,6 +26,7 @@ import java.time.LocalDate;
 @Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames = {"restaurant_id", "date"}, name = "meals_unique_restaurant_date_idx")})
 @Setter
 @Getter
+@RequiredArgsConstructor
 @ToString
 public class Meal extends AbstractNamedEntity {
     public static final String ALL_SORTED = "Meal.getAll";
@@ -40,10 +44,11 @@ public class Meal extends AbstractNamedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-//    @NotNull
+    @NotNull(groups = View.Persist.class)
+    @JsonBackReference
     private Restaurant restaurant;
 
-    public Meal() {
+ /*   public Meal() {
     }
 
     public Meal(String name, int price, LocalDate date) {
@@ -54,5 +59,5 @@ public class Meal extends AbstractNamedEntity {
         super(id, name);
         this.price = price;
         this.date = date;
-    }
+    }*/
 }
