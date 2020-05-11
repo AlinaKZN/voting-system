@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 import ru.vote.system.restaurant.model.Restaurant;
 import ru.vote.system.restaurant.repository.RestaurantRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,10 @@ public class RestaurantService {
 
     public Restaurant getWithMenu(int id) {
         return repository.getWithMenu(id);
+    }
+
+    public List<Restaurant> getAllWithTodayMenu() {
+        return repository.findAllWithMenuOfDay(LocalDate.now());
     }
 
 

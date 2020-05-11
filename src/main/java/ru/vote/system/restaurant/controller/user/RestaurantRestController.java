@@ -22,6 +22,12 @@ public class RestaurantRestController {
     @Autowired
     private RestaurantService service;
 
+    @GetMapping("/menus")
+    public List<Restaurant> getAllWithTodayMenu() {
+        log.info("getAll restaurants with today menu");
+        return service.getAllWithTodayMenu();
+    }
+
     @GetMapping
     public List<Restaurant> getAll() {
         log.info("getAll restaurants");
