@@ -11,10 +11,10 @@ import java.util.List;
 public interface MealRepository extends CrudRepository<Meal, Integer> {
 
     @Transactional
-    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restId AND m.date=:date")
+    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=?1 AND m.date=?2")
     List<Meal> getMenu(int restId, LocalDate date);
 
     @Transactional
-    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restId ORDER BY m.date")
+    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=?1 ORDER BY m.date")
     List<Meal> getAll(int id);
 }

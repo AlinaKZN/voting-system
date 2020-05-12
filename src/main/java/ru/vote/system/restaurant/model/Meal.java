@@ -37,8 +37,7 @@ public class Meal extends AbstractNamedEntity {
     @Range(min = 10, max = 5000)
     private int price;
 
-    @Column(name = "date", nullable = false)
-    @NotNull
+    @Column(name = "date")
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -48,16 +47,4 @@ public class Meal extends AbstractNamedEntity {
     @JsonBackReference
     private Restaurant restaurant;
 
- /*   public Meal() {
-    }
-
-    public Meal(String name, int price, LocalDate date) {
-        this(null, name, price, date);
-    }
-
-    public Meal(Integer id, String name, int price, LocalDate date) {
-        super(id, name);
-        this.price = price;
-        this.date = date;
-    }*/
 }

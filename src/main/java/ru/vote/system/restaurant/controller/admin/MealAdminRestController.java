@@ -12,6 +12,7 @@ import ru.vote.system.restaurant.model.Meal;
 import ru.vote.system.restaurant.service.MealService;
 
 import java.net.URI;
+import java.time.LocalDate;
 
 import static ru.vote.system.restaurant.util.ValidationUtil.assureIdConsistent;
 import static ru.vote.system.restaurant.util.ValidationUtil.checkNew;
@@ -25,13 +26,13 @@ public class MealAdminRestController {
     @Autowired
     private MealService service;
 
-    @GetMapping("/${id}")
+    @GetMapping("/{id}")
     public Meal get(@PathVariable int id) {
         log.info("get meal {}", id);
         return service.get(id);
     }
 
-    @DeleteMapping(value = "/${id}")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         log.info("delete meal {}", id);
@@ -49,6 +50,7 @@ public class MealAdminRestController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Meal> createWithLocation(@RequestBody Meal meal) {
         checkNew(meal);
+        meal.setDate(LocalDate.now());
         log.info("create {} ", meal);
         Meal created = service.save(meal);
 

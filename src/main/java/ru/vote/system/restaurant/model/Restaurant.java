@@ -2,6 +2,7 @@ package ru.vote.system.restaurant.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")//, cascade = CascadeType.REMOVE, orphanRemoval = true)

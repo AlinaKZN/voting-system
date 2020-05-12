@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping(value = MealRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MealRestController {
     private Logger log = LoggerFactory.getLogger(MealRestController.class);
-    protected static final String REST_URL = "/rest/profile/meals";
+    protected static final String REST_URL = "/rest/profile/menu";
 
     @Autowired
     MealService service;
@@ -29,7 +29,7 @@ public class MealRestController {
         return service.getMenu(id, LocalDate.now());
     }
 
-    @GetMapping(value = "history/{id}")
+    @GetMapping(value = "/{id}/history")
     public List<Meal> getMealsHistory(@PathVariable int id) {
         log.info("meals history for restaurant {}", id);
         return service.getAll(id);
