@@ -3,7 +3,7 @@ package ru.vote.system.restaurant.service;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.vote.system.restaurant.model.Restaurant;
-import ru.vote.system.restaurant.repository.RestaurantRepository;
+import ru.vote.system.restaurant.repository.CrudRestaurantRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.Optional;
 @Service
 public class RestaurantService {
 
-    RestaurantRepository repository;
+    CrudRestaurantRepository repository;
 
-    public RestaurantService(RestaurantRepository repository) {
+    public RestaurantService(CrudRestaurantRepository repository) {
         this.repository = repository;
     }
 

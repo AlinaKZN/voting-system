@@ -8,7 +8,7 @@ import ru.vote.system.restaurant.model.Meal;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface MealRepository extends CrudRepository<Meal, Integer> {
+public interface CrudMealRepository extends CrudRepository<Meal, Integer> {
 
     @Transactional
     @Query("SELECT m FROM Meal m WHERE m.restaurant.id=?1 AND m.date=?2")

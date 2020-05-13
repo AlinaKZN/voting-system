@@ -8,7 +8,7 @@ import ru.vote.system.restaurant.model.Restaurant;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface RestaurantRepository extends CrudRepository<Restaurant, Integer> {
+public interface CrudRestaurantRepository extends CrudRepository<Restaurant, Integer> {
 
     @Query("SELECT r FROM Restaurant r")
     List<Restaurant> findAll();

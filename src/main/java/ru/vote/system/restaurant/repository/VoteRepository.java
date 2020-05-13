@@ -2,19 +2,23 @@ package ru.vote.system.restaurant.repository;
 
 import ru.vote.system.restaurant.model.Vote;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface VoteRepository {
-    // null if updated vote do not belong to userId
-    Vote save(Vote vote, int userId);
+    // null if not updated
+    Vote update(Vote vote, int restId, LocalDateTime dateTime);
 
-    // false if vote do not belong to userId
-    boolean delete(int id, int userId);
+    // false if not deleted
+    boolean delete(int userId, LocalDate date);
 
-    // null if vote do not belong to userId
-    Vote get(int id, int userId);
+    // null if user haven't placed a vote today
+    Vote get(LocalDate date, int userId);
 
     // ORDERED date
     List<Vote> getAll(int userId);
 
+    //null if not created
+    Vote create(int userId, int restId, LocalDateTime dateTime);
 }

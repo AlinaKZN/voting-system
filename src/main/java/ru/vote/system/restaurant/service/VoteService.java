@@ -4,11 +4,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.vote.system.restaurant.model.Vote;
 import ru.vote.system.restaurant.repository.VoteRepository;
-import ru.vote.system.restaurant.util.DateUtil;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-
-import static ru.vote.system.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class VoteService {
@@ -19,29 +18,24 @@ public class VoteService {
         this.repository = repository;
     }
 
-    public Vote get(int id, int userId) {
-        return repository.get(id, userId);
+    public Vote get(LocalDate date, int userId) {
+        return repository.get(date, userId);
     }
 
     public List<Vote> getAll(int userId) {
         return repository.getAll(userId);
     }
 
-    public Vote create(Vote vote, int userId) {
-        Assert.notNull(vote, "vote must not be null");
-        return repository.save(vote, userId);
+    public Vote create(int userId, int restId, LocalDateTime dateTime) {
+        return repository.create(userId, restId, dateTime);
     }
 
-    public Vote update(Vote vote, Integer userId) {
+    public Vote update(Vote vote, Integer restId, LocalDateTime dateTime) {
         Assert.notNull(vote, "vote must not be null");
-        if (vote.getPlaced().toLocalTime().isBefore(DateUtil.STOP_TIME)) {
-            return repository.save(vote, userId);
-        } else {
-            throw new RuntimeException("Too late to vote, try tomorrow");
-        }
+        return repository.update(vote, restId, dateTime);
     }
-    
-    public void delete(int id, int userId) {
-        checkNotFoundWithId(repository.delete(id, userId), id);
+
+    public boolean delete(int userId, LocalDate date) {
+        return repository.delete(userId, date);
     }
 }

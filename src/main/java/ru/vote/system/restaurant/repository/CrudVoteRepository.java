@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.vote.system.restaurant.model.Vote;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Transactional(readOnly = true)
@@ -15,16 +16,15 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:userId")
-    int delete(@Param("id") int id, @Param("userId") int userId);
+    @Query("DELETE FROM Vote v WHERE v.user.id=:userId AND v.placed>=:startOfDay AND v.placed<:startOfNextDay")
+    int delete(@Param("userId") int userId, @Param("startOfDay") LocalDateTime startOfDay, @Param("startOfNextDay") LocalDateTime startOfNextDay);
 
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId ORDER BY v.placed")
     List<Vote> getAll(@Param("userId") int userId);
 
-    @Query("SELECT v FROM Vote v WHERE v.placed=:date and v.user.id=:userId")
-    Vote getVoteByUserIdAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
+    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.placed>=:startOfDay AND v.placed<:startOfNextDay")
+    Vote get(@Param("userId") int userId, @Param("startOfDay") LocalDateTime startOfDay, @Param("startOfNextDay") LocalDateTime startOfNextDay);
 
     @Query("SELECT v FROM Vote v WHERE v.placed = :date and v.restaurant.id=:restId")
     List<Vote> getVotesByRestaurantAndDate(@Param("restId") int restId, @Param("date") LocalDate date);
-
 }

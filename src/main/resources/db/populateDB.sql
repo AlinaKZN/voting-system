@@ -23,12 +23,6 @@ INSERT INTO restaurants(name)
 VALUES ('Plove'),
        ('Seven'),
        ('Свитер');
-/* 100007*/
-
-/*INSERT INTO menus(enabled, restaurant_id)
-VALUES ('2020-01-30', 100005),
-       ('2020-01-30', 100006),
-       ('2020-01-30', 100007);*/
 
 INSERT INTO meals (name, price, date, restaurant_id)
 VALUES ('Форель в фольге', 900, '2020-05-10', 100004),
@@ -54,5 +48,5 @@ VALUES ('Форель в фольге', 900, '2020-05-10', 100004),
 INSERT INTO votes(placed, restaurant_id, user_id)
 VALUES (CURDATE() + ' 08:00:00', 100002, 100000),
        (CURDATE() + ' 13:00:00', 100003, 100001),
-       (CURDATE() + ' 08:00:00', 100004, 100000),
+       ('2020-01-31 08:00:00', 100004, 100000),
        ('2020-01-31 13:00:00', 100002, 100001);
