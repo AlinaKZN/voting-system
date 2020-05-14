@@ -38,4 +38,8 @@ public class VoteService {
     public boolean delete(int userId, LocalDate date) {
         return repository.delete(userId, date);
     }
+
+    public List<Vote> getVotesByRestaurantAndDate(LocalDate date, int restId) {
+        return repository.getVotesByRestaurantAndDate(restId, date);
+    }
 }

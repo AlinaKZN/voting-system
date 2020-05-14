@@ -28,6 +28,12 @@ public class RestaurantRestController {
         return service.getAllWithTodayMenu();
     }
 
+    @GetMapping("/votes")
+    public List<Restaurant> getAllWithTodayVotes() {
+        log.info("getAll restaurants with today votes");
+        return service.getAllWithTodayVotes();
+    }
+
     @GetMapping
     public List<Restaurant> getAll() {
         log.info("getAll restaurants");

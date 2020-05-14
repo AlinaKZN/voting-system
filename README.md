@@ -40,7 +40,13 @@ API Documentation:
 ### User
 **Main functions:**
 ###place a vote for restaurant with id = 100004
-`curl -X POST http://localhost:8050/rest/profile/vote/100004 --user user@yandex.ru:password`
+`curl -X POST http://localhost:8050/rest/profile/votes/100004 --user user@yandex.ru:password`
+
+#### get all restaurants with today votes
+`curl -s http://localhost:8050/rest/profile/restaurants/votes --user user@yandex.ru:password`
+
+###get today votes for restaurant with id = 100003
+`curl -s http://localhost:8050/rest/profile/votes/100003 --user user@yandex.ru:password`
 
 #### get all restaurants with today menu
 `curl -s http://localhost:8050/rest/profile/restaurants/menus --user user@yandex.ru:password`
@@ -51,15 +57,15 @@ API Documentation:
 #### get history of menu for the restaurant with id = 100002
 `curl -s http://localhost:8050/rest/profile/menu/100002/history --user user@yandex.ru:password`
 
-###get votes history
-`curl -s http://localhost:8050/rest/profile/vote/history --user user@yandex.ru:password`
+###get votes history for authorised user
+`curl -s http://localhost:8050/rest/profile/votes/history --user user@yandex.ru:password`
 
 **Additional functions:**
 ###delete today vote
-`curl -X DELETE http://localhost:8050/rest/profile/vote --user user@yandex.ru:password`
+`curl -X DELETE http://localhost:8050/rest/profile/votes --user user@yandex.ru:password`
 
 ### get today vote
-`curl -s http://localhost:8050/rest/profile/vote --user user@yandex.ru:password`
+`curl -s http://localhost:8050/rest/profile/votes --user user@yandex.ru:password`
 
 #### get all restaurants
 `curl -s http://localhost:8050/rest/profile/restaurants --user user@yandex.ru:password`

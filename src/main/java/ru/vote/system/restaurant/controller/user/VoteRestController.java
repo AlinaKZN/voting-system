@@ -22,10 +22,17 @@ import static ru.vote.system.restaurant.util.DateUtil.isLate;
 @RequestMapping(value = VoteRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class VoteRestController {
     private final Logger log = LoggerFactory.getLogger(getClass());
-    protected static final String REST_URL = "/rest/profile/vote";
+    protected static final String REST_URL = "/rest/profile/votes";
 
     @Autowired
     VoteService service;
+
+    @GetMapping("/{restId}")
+    public List<Vote> get(@PathVariable int restId) {
+        LocalDate date = LocalDate.now();
+        log.info("get today votes for restaurant {}", restId);
+        return service.getVotesByRestaurantAndDate(date, restId);
+    }
 
     @PostMapping(value = "/{restId}")
     public ResponseEntity<Vote> vote(@PathVariable int restId) {

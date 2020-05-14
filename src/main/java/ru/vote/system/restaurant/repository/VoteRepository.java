@@ -21,4 +21,6 @@ public interface VoteRepository {
 
     //null if not created
     Vote create(int userId, int restId, LocalDateTime dateTime);
+
+    List<Vote> getVotesByRestaurantAndDate(int restId, LocalDate date);
 }

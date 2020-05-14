@@ -63,4 +63,11 @@ public class VoteRepositoryImpl implements VoteRepository {
         return voteRepository.save(vote);
     }
 
+    @Override
+    public List<Vote> getVotesByRestaurantAndDate(int restId, LocalDate date) {
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime startOfNextDay = date.plus(1, ChronoUnit.DAYS).atStartOfDay();
+        return voteRepository.getVotesByRestaurantAndDate(restId, startOfDay, startOfNextDay);
+    }
+
 }

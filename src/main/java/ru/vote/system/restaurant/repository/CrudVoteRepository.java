@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.vote.system.restaurant.model.Vote;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,6 +24,6 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.placed>=:startOfDay AND v.placed<:startOfNextDay")
     Vote get(@Param("userId") int userId, @Param("startOfDay") LocalDateTime startOfDay, @Param("startOfNextDay") LocalDateTime startOfNextDay);
 
-    @Query("SELECT v FROM Vote v WHERE v.placed = :date and v.restaurant.id=:restId")
-    List<Vote> getVotesByRestaurantAndDate(@Param("restId") int restId, @Param("date") LocalDate date);
+    @Query("SELECT v FROM Vote v WHERE v.restaurant.id=:restId AND v.placed >= :startOfDay AND v.placed < :startOfNextDay")
+    List<Vote> getVotesByRestaurantAndDate(@Param("restId") int restId, @Param("startOfDay") LocalDateTime startOfDay, @Param("startOfNextDay") LocalDateTime startOfNextDay);
 }
